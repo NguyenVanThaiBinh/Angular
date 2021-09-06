@@ -1,28 +1,36 @@
 <div class="container">
-    <h1>Phone Manager</h1>
+    <div class="row">
+        <div class="col">
+            <h1>Book Manager</h1>
+        </div>
+        <div class="col">
+            <button class="btn btn-danger btn-lg" routerLink="/form">Go to Create</button>
+        </div>
+    </div>
+
     <br />
     <table class="table table-hover">
         <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Phone Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Catagory</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author</th>
+
                 <th colspan="2" class="delete_btn" scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let phone of phoneData; " id="tr-{{phone.id}}">
-                <th scope="row">{{ phone.id }}</th>
-                <td>{{ phone.name }}</td>
-                <td>{{ phone.price | currency }}</td>
-                <td>{{ phone.category.name }}</td>
+            <tr *ngFor="let book of bookData; " id="tr-{{book.id}}">
+                <th scope="row"> {{ book.id }}</th>
+                <td><span style="  text-decoration-line: underline;cursor: zoom-in;" title="See more info!" (click)="getOneData(book.id)" (click)="triggerModal(modalInfo)">{{ book.bookName }}</span></td>
+                <td>{{ book.author }}</td>
+
                 <td class="delete_btn">
-                    <button class="btn btn-secondary" (click)="deletePhoneData(phone)">
+                    <button class="btn btn-secondary" (click)="deletePhoneData(book)">
             Delete
           </button>
                 </td>
-                <td><button class="btn btn-dark" (click)="triggerModal(modalData)" (click)="getOneData(phone.id)">Edit</button></td>
+                <td><button class="btn btn-dark" (click)="triggerModal(modalData)" (click)="getOneData(book.id)">Edit</button></td>
             </tr>
         </tbody>
     </table>
@@ -32,40 +40,77 @@
     <ng-template #modalData let-modal>
         <form [formGroup]='form' (ngSubmit)='submit()' *ngIf="form">
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Edit phone data</h4>
+                <h4 class="modal-title" id="modal-basic-title">Edit book data</h4>
             </div>
             <div class="modal-body">
 
                 <div class="mb-3 row">
                     <div class="col">
-                        <label for="phoneName" class="col-form-label ">Phone Name:</label>
-                        <input type="text" class="col form-control" formControlName="phoneName" value="{{phoneName}}">
-                        <span class="text-danger" *ngIf='form?.controls?.phoneName?.dirty && form?.controls?.phoneName?.errors'>
-                            {{ form?.controls?.phoneName?.errors?.required ? 'This field is required' : 'Must less or equals than 20' }}
+                        <label for="bookName" class="col-form-label ">Book Name:</label>
+                        <input type="text" class="col form-control" formControlName="bookName">
+                        <span class="text-danger" *ngIf='form?.controls?.bookName?.dirty && form?.controls?.bookName?.errors'>
+                            {{ form?.controls?.bookName?.errors?.required ? 'This field is required' : 'Must less or equals than 20' }}
                           </span>
                     </div>
                     <div class="col">
-                        <label for="price" class="col-form-label ">Price:</label>
-                        <input type="number" formControlName="price" class=" col form-control" value="{{price}}">
-                        <span class="text-danger" *ngIf='form?.controls?.price?.dirty && form?.controls?.price?.errors'>
-                            {{ form?.controls?.price?.errors?.required ? 'This field is required' : 'Must be more than 1' }}
+                        <label for="author" class="col-form-label ">Author:</label>
+                        <input type="text" formControlName="author" class=" col form-control">
+                        <span class="text-danger" *ngIf='form?.controls?.author?.dirty && form?.controls?.author?.errors'>
+                            {{ form?.controls?.author?.errors?.required ? 'This field is required' : 'Must less or equals than 30' }}
                           </span>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="col-form-label">Message:</label>
-                    <select class="form-select" name="category" formControlName="category" id="category" value="{{category}}">                       
-                        <option value="Apple">Apple</option>
-                        <option value="Samsung">Samsung</option>
-                        <option value="China">China</option>
-                    </select>
+                    <label for="describe" class="col-form-label">Describe:</label>
+                    <textarea cols="30" rows="5" formControlName="describe" class=" col form-control"></textarea>
+
+                    <span class="text-danger" *ngIf='form?.controls?.describe?.dirty && form?.controls?.describe?.errors'>
+                            {{ form?.controls?.describe?.errors?.required ? 'This field is required' : 'Must less or equals than 200' }}
+                          </span>
                 </div>
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" id="closeModel" class="btn btn-danger" (click)="modal.close()">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </ng-template>
+    <!-- Form see more info -->
+    <ng-template #modalInfo let-modal>
+        <form [formGroup]='form' (ngSubmit)='submit()' *ngIf="form">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">See information book</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="bookName" class="col-form-label ">Book Name:</label>
+                        <input [readonly]=true type="text" class="col form-control" formControlName="bookName">
+                        <span class="text-danger" *ngIf='form?.controls?.bookName?.dirty && form?.controls?.bookName?.errors'>
+                            {{ form?.controls?.bookName?.errors?.required ? 'This field is required' : 'Must less or equals than 20' }}
+                          </span>
+                    </div>
+                    <div class="col">
+                        <label for="author" class="col-form-label ">Author:</label>
+                        <input [readonly]=true type="text" formControlName="author" class=" col form-control">
+                        <span class="text-danger" *ngIf='form?.controls?.author?.dirty && form?.controls?.author?.errors'>
+                            {{ form?.controls?.author?.errors?.required ? 'This field is required' : 'Must less or equals than 30' }}
+                          </span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="describe" class="col-form-label">Describe:</label>
+                    <textarea [readonly]=true cols="30" rows="5" formControlName="describe" class=" col form-control"></textarea>
+
+                    <span class="text-danger" *ngIf='form?.controls?.describe?.dirty && form?.controls?.describe?.errors'>
+                            {{ form?.controls?.describe?.errors?.required ? 'This field is required' : 'Must less or equals than 400' }}
+                          </span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeModel" class="btn btn-danger" (click)="modal.close()">Close</button>
+
             </div>
         </form>
     </ng-template>

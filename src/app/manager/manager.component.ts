@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{PhoneData} from 'src/dtos/phonedata.dto'
+import{BookData} from 'src/dtos/bookdata.dto'
 
 
 
@@ -17,13 +18,15 @@ import{PhoneData} from 'src/dtos/phonedata.dto'
 export class ManagerComponent implements OnInit {
  
    
-  public phoneData!: any;
+  public bookData!: any;
   closeModal: string | undefined;
 
-  public phoneName!: string;
-  public price!: string;
-  public category!: string;
-  public idPhone!: number;
+  public bookName!: string;
+  public author!: string;
+  public describe!: string;
+  public bookId!: number;
+
+  
 
   public form!: FormGroup;
 
@@ -46,18 +49,16 @@ export class ManagerComponent implements OnInit {
     if (this.form.invalid)
       return;
 
-      const { phoneName, price, category } = this.form.value;
+      const { bookName, author, describe } = this.form.value;
     
 
-      const dto: PhoneData = {       
-        name: phoneName,
-        price:price,
-        category: {        
-          name:category
-        }
-      } as PhoneData
+      const dto: BookData = {       
+        bookName: bookName,
+        author:author,
+        describe: describe,
+      } as BookData
 
-      this.managerService.updatePhoneData(this.idPhone,dto).subscribe(
+      this.managerService.updateBookData(this.bookId,dto).subscribe(
         (res) => {          
           this.toastService.success('Update successfully!');
           this.loadData();
@@ -75,16 +76,16 @@ export class ManagerComponent implements OnInit {
 
  
     // API
-  public getOneData(phoneData :any): void {
-    this.managerService.getOneData(phoneData).subscribe((data) =>{
-        this.phoneName = data.name;
-        this.price = data.price;
-        this.category = data.category.name;    
-        this.idPhone = data.id;  
+  public getOneData(bookId :any): void {
+    this.managerService.getOneData(bookId).subscribe((data) =>{
+        this.bookName = data.bookName;     
+        this.author = data.author;    
+        this.bookId = data.id;  
+        this.describe = data.describe;  
         this.form = this.formsBuilder.group({
-          phoneName: [data.name,[Validators.required, Validators.maxLength(20)]],
-          price: [data.price,[Validators.required, Validators.min(1)]],
-          category: [data.category.name,[Validators.required]]
+          bookName: [data.bookName,[Validators.required, Validators.maxLength(20)]],
+          author: [data.author,[Validators.required, Validators.maxLength(30)]],
+          describe: [data.describe,[Validators.required,Validators.maxLength(400)]]
         })
         
     },(error) => this.toastService.error('Error getData!!!', error));
@@ -92,8 +93,8 @@ export class ManagerComponent implements OnInit {
   }
 
   public loadData(): void {
-    this.managerService.getPhoneData().subscribe((data) => {
-      this.phoneData = data;
+    this.managerService.getBookData().subscribe((data) => {
+      this.bookData = data;
      
     });
   }
@@ -109,10 +110,10 @@ export class ManagerComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.managerService.deletePhoneData(phoneData.id).subscribe(
+        this.managerService.deleteBookData(phoneData.id).subscribe(
           (res) => {
            
-            this.phoneData = this.phoneData.splice(phoneData.id, 1);
+            this.bookData = this.bookData.splice(phoneData.id, 1);
             this.toastService.success('Delete successfully!', phoneData.name)
             let row_delete = document.getElementById("tr-"+phoneData.id);
          

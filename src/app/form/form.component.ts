@@ -1,4 +1,5 @@
-import { PhoneData } from './../../dtos/phonedata.dto';
+
+import { BookData } from './../../dtos/bookdata.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../Service/form-service/form-service.service';
@@ -13,7 +14,7 @@ export class FormComponent implements OnInit {
 
   public form! : FormGroup;
 
-  public PhoneData : PhoneData | undefined;
+ 
   
 
   constructor(private formsBuilder: FormBuilder,
@@ -26,10 +27,10 @@ export class FormComponent implements OnInit {
 
   getForm(){
     this.form = this.formsBuilder.group({
-      phoneName: ['iPhone',[Validators.required, Validators.maxLength(20)]],
-      price: ['10',[Validators.required, Validators.min(1)]],
-      category: ['China',[Validators.required]]
-    })
+          bookName: ['Sapiens ?',[Validators.required, Validators.maxLength(20)]],
+          author: ['Yuval Harari ?',[Validators.required, Validators.maxLength(30)]],
+          describe: ['Write Something?',[Validators.required,Validators.maxLength(400)]]
+        })
   }
   submit(){
     console.log(this.form.value);
@@ -37,16 +38,14 @@ export class FormComponent implements OnInit {
     if(this.form.invalid)
     return;
 
-    const dto: PhoneData = {       
-      name: this.form.value.phoneName,
-      price:this.form.value.price,
-      category: {        
-        name:this.form.value.category
-      }
-    } as PhoneData
+    const dto: BookData = {       
+      bookName: this.form.value.bookName,
+      author:this.form.value.author,
+      describe: this.form.value.describe,
+    } as BookData
 
-    this.formsService.addPhoneData(dto).subscribe((res) => {          
-      this.toastService.success('Add successfully!',dto.name);
+    this.formsService.addBookData(dto).subscribe((res) => {          
+      this.toastService.success('Add successfully!',dto.bookName);
       this.form.reset();
       this.getForm();
       

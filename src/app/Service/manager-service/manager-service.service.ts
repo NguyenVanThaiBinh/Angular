@@ -6,7 +6,8 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import{PhoneData} from 'src/dtos/phonedata.dto'
+
+import{BookData} from 'src/dtos/bookdata.dto'
 
 @Injectable({
   providedIn: 'root',
@@ -25,30 +26,30 @@ export class ManagerService {
   private REST_API_SERVER = 'http://localhost:3000';
 
   
-
-  public getPhoneData(): Observable<any> {
-    const url = `${this.REST_API_SERVER}/phone`;
+// <_________________________________________________________________________________>
+  public getBookData(): Observable<any> {
+    const url = `${this.REST_API_SERVER}/book`;
     return this.httpClient
       .get(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  public deletePhoneData(id: number): Observable<any> {
-    const url = `${this.REST_API_SERVER}/phone/` + id;
+  public deleteBookData(id: number): Observable<any> {
+    const url = `${this.REST_API_SERVER}/book/` + id;
     return this.httpClient
       .delete(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
   public getOneData(id:number): Observable<any> {
-    const url = `${this.REST_API_SERVER}/phone/` + id;
+    const url = `${this.REST_API_SERVER}/book/` + id;
     return this.httpClient
       .get(url, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
-  public updatePhoneData(id: number, phoneData : PhoneData) : Observable<any> {
-    const url = `${this.REST_API_SERVER}/phone/` + id;
+  public updateBookData(id: number, bookData : BookData) : Observable<any> {
+    const url = `${this.REST_API_SERVER}/book/` + id;
     return this.httpClient
-      .patch(url,phoneData, this.httpOptions)
+      .patch(url,bookData, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 

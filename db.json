@@ -1,60 +1,34 @@
 {
-  "phone": [
+  "book": [
     {
-      "id": 6,
-      "name": "iPhone",
-      "price": 10,
-      "category": {
-        "name": "Apple"
-      }
+      "id": 1,
+      "bookName": "Tiếng Việt 1",
+      "author": "Giang Còi",
+      "describe": "  Book is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500\n"
     },
     {
-      "name": "Sint alias dicta sit",
-      "price": 21,
-      "category": {
-        "name": "Apple"
-      },
-      "id": 13
+      "bookName": "Sapiens",
+      "author": "Yuval Harari",
+      "describe": "Write Something?",
+      "id": 2
     },
     {
-      "name": "Nisi debitis nisi to",
-      "price": 79,
-      "category": {
-        "name": "China"
-      },
-      "id": 15
+      "bookName": "Nhà Giả Kim",
+      "author": "Bình Hụ",
+      "describe": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into ",
+      "id": 3
     },
     {
-      "name": "Aspernatur cupidatat",
-      "price": 79,
-      "category": {
-        "name": "Apple"
-      },
-      "id": 18
+      "bookName": "Olala HaHa",
+      "author": "Messibucu",
+      "describe": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in th",
+      "id": 4
     },
     {
-      "name": "Quae est sunt conse",
-      "price": 39,
-      "category": {
-        "name": "Apple"
-      },
-      "id": 20
-    },
-    {
-      "name": "Rerum perspiciatis ",
-      "price": 69,
-      "category": {
-        "name": "Samsung"
-      },
-      "id": 21
-    },
-    {
-      "name": "Ut ratione minima ve",
-      "price": 44,
-      "category": {
-        "name": "Samsung"
-      },
-      "id": 22
+      "bookName": "Thư gà",
+      "author": "Lão Hạc",
+      "describe": "Write Something? HoHo",
+      "id": 5
     }
   ]
 }

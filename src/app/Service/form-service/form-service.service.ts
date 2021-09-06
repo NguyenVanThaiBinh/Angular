@@ -2,7 +2,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { PhoneData } from 'src/dtos/phonedata.dto';
+
+import { BookData } from 'src/dtos/bookdata.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class FormService {
 
   private REST_API_SERVER = 'http://localhost:3000';
 
-  public addPhoneData( phoneData : PhoneData) : Observable<any> {
-    const url = `${this.REST_API_SERVER}/phone/` ;
+  public addBookData( bookData : BookData) : Observable<any> {
+    const url = `${this.REST_API_SERVER}/book/` ;
     return this.httpClient
-      .post(url,phoneData, this.httpOptions)
+      .post(url,bookData, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
 
