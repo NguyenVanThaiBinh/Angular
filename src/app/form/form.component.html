@@ -1,0 +1,33 @@
+<div class="container">
+    <h2>Add new Phone</h2>
+    <br>
+    <form [formGroup]='form' (ngSubmit)='submit()' *ngIf="form" class="from_reactive">
+        <div class="mb-3 row">
+            <div class="col">
+                <label for="phoneName" class="col-form-label ">Phone Name:</label>
+                <input type="text" class="col form-control" formControlName="phoneName"><br>
+                <span class="text-danger" *ngIf='form?.controls?.phoneName?.dirty && form?.controls?.phoneName?.errors'>
+                                  {{ form?.controls?.phoneName?.errors?.required ? 'This field is required' : 'Must less or equals than 20' }}
+                                </span>
+            </div>
+            <div class="col">
+                <label for="price" class="col-form-label ">Price:</label>
+                <input type="number" formControlName="price" class=" col form-control"><br>
+                <span class="text-danger" *ngIf='form?.controls?.price?.dirty && form?.controls?.price?.errors'>
+                                  {{ form?.controls?.price?.errors?.required ? 'This field is required' : 'Must be more than 1' }}
+                                </span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="col-form-label">Message:</label>
+            <select class="form-select" name="category" formControlName="category" id="category">                       
+                              <option value="Apple">Apple</option>
+                              <option value="Samsung">Samsung</option>
+                              <option value="China">China</option>
+                          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add new</button>
+
+    </form>
+</div>

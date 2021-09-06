@@ -1,0 +1,60 @@
+{
+  "phone": [
+    {
+      "id": 6,
+      "name": "iPhone",
+      "price": 10,
+      "category": {
+        "name": "Apple"
+      }
+    },
+    {
+      "name": "Sint alias dicta sit",
+      "price": 21,
+      "category": {
+        "name": "Apple"
+      },
+      "id": 13
+    },
+    {
+      "name": "Nisi debitis nisi to",
+      "price": 79,
+      "category": {
+        "name": "China"
+      },
+      "id": 15
+    },
+    {
+      "name": "Aspernatur cupidatat",
+      "price": 79,
+      "category": {
+        "name": "Apple"
+      },
+      "id": 18
+    },
+    {
+      "name": "Quae est sunt conse",
+      "price": 39,
+      "category": {
+        "name": "Apple"
+      },
+      "id": 20
+    },
+    {
+      "name": "Rerum perspiciatis ",
+      "price": 69,
+      "category": {
+        "name": "Samsung"
+      },
+      "id": 21
+    },
+    {
+      "name": "Ut ratione minima ve",
+      "price": 44,
+      "category": {
+        "name": "Samsung"
+      },
+      "id": 22
+    }
+  ]
+}
