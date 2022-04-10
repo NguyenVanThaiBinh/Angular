@@ -1,7 +1,7 @@
 <div class="container">
     <h2>Create new Book</h2>
     <br>
-    <form [formGroup]='form' (ngSubmit)='submit()' class="from_reactive">
+    <form [formGroup]='form' (ngSubmit)='submit()' class="from_reactive" (keydown.enter)="$event.preventDefault()">
         <div class="mb-3 row">
             <div class="col">
                 <label for="bookName" class="col-form-label ">Book Name:</label>
@@ -14,7 +14,7 @@
                 <label for="author" class="col-form-label ">Author:</label>
                 <input type="text" formControlName="author" placeholder="Yuval Harari ?" class=" col form-control"><br>
                 <span class="text-danger" *ngIf='form?.controls?.author?.dirty && form?.controls?.author?.errors'>
-                                  {{ form?.controls?.author?.errors?.required ? 'This field is required' : 'Must be more than 1' }}
+                                  {{ form?.controls?.author?.errors?.required ? 'This field is required' : 'Must less or equals than 30' }}
                                 </span>
             </div>
         </div>
@@ -27,7 +27,7 @@
                           </span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create new</button>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Create new</button>
 
     </form>
 </div>

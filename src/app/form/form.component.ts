@@ -23,6 +23,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getForm();
+
   }
 
   getForm(){
