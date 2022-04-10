@@ -27,9 +27,9 @@ export class FormComponent implements OnInit {
 
   getForm(){
     this.form = this.formsBuilder.group({
-          bookName: ['Sapiens ?',[Validators.required, Validators.maxLength(20)]],
-          author: ['Yuval Harari ?',[Validators.required, Validators.maxLength(30)]],
-          describe: ['Write Something?',[Validators.required,Validators.maxLength(400)]]
+          bookName: ['',[Validators.required, Validators.maxLength(20)]],
+          author: ['',[Validators.required, Validators.maxLength(30)]],
+          describe: ['',[Validators.required,Validators.maxLength(400)]]
         })
   }
   submit(){

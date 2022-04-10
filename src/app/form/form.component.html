@@ -5,14 +5,14 @@
         <div class="mb-3 row">
             <div class="col">
                 <label for="bookName" class="col-form-label ">Book Name:</label>
-                <input type="text" class="col form-control" formControlName="bookName"><br>
+                <input type="text" class="col form-control" placeholder="Sapiens ?" formControlName="bookName"><br>
                 <span class="text-danger" *ngIf='form?.controls?.bookName?.dirty && form?.controls?.bookName?.errors'>
                                   {{ form?.controls?.bookName?.errors?.required ? 'This field is required' : 'Must less or equals than 20' }}
                                 </span>
             </div>
             <div class="col">
                 <label for="author" class="col-form-label ">Author:</label>
-                <input type="text" formControlName="author" class=" col form-control"><br>
+                <input type="text" formControlName="author" placeholder="Yuval Harari ?" class=" col form-control"><br>
                 <span class="text-danger" *ngIf='form?.controls?.author?.dirty && form?.controls?.author?.errors'>
                                   {{ form?.controls?.author?.errors?.required ? 'This field is required' : 'Must be more than 1' }}
                                 </span>
@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
             <label for="describe" class="col-form-label">Describe:</label>
-            <textarea cols="30" rows="5" formControlName="describe" class=" col form-control"></textarea>
+            <textarea cols="30" rows="5" placeholder="Write Something?" formControlName="describe" class=" col form-control"></textarea>
 
             <span class="text-danger" *ngIf='form?.controls?.describe?.dirty && form?.controls?.describe?.errors'>
                             {{ form?.controls?.describe?.errors?.required ? 'This field is required' : 'Must less or equals than 400' }}
